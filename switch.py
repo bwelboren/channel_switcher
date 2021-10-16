@@ -16,9 +16,6 @@ def mouse_click(seconds, interval, first_pos, second_pos):
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
 
-def get_cursor_location():
-    return win32api.GetCursorPos()
-
 def get_pos():
 
     first_click = 0
@@ -26,10 +23,10 @@ def get_pos():
 
     while True:
         if win32api.GetKeyState(win32con.VK_LSHIFT) < 0:
-            first_click = get_cursor_location()
+            first_click = win32api.GetCursorPos()
             continue
         if win32api.GetKeyState(win32con.VK_LCONTROL) < 0:
-            second_click = get_cursor_location()
+            second_click = win32api.GetCursorPos()
             continue
         if first_click != 0 and second_click != 0:
             break
